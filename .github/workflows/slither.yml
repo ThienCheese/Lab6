@@ -1,0 +1,28 @@
+name: Slither Security Scan
+
+# Trigger: Chạy khi có code push vào nhánh main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      # Bước 1: Checkout mã nguồn từ Repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Bước 2: Chạy Slither
+      - name: Run Slither
+        uses: crytic/slither-action@v0.4.0
+        id: slither
+        with:
+          # Cấu hình quan trọng: Fail job nếu tìm thấy lỗi High hoặc Critical
+          fail-on: high 
+          # Tùy chọn: Chỉ định file hoặc để mặc định quét toàn bộ thư mục (.)
+          target: '.' 
+          # Tùy chọn: Bỏ qua các lỗi không quan trọng để log gọn hơn
+          slither-args: --exclude-informational --exclude-low
