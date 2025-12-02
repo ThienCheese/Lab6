@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20; // 1. FIX: Cập nhật lên phiên bản ổn định, mới hơn (0.8.20)
+pragma solidity >=0.8.0 <0.9.0; // 1. FIX: Cập nhật lên phiên bản ổn định, mới hơn (0.8.20)
 
 contract SecureVault {
     // Thêm modifier chống Tái nhập (Reentrancy Guard)
